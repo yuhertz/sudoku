@@ -33,7 +33,7 @@
             display: grid;
             grid-template-columns: repeat(9, 30px);
             grid-template-rows: repeat(9, 30px);
-            gap: 2px;
+            gap: 0;
             margin: 0 auto;
         }
         .sudoku-grid input {
@@ -49,33 +49,28 @@
             background-color: #e0e0e0;
             font-weight: bold;
         }
-        .grid-line {
-            border-bottom: 2px solid #000;
-            border-right: 2px solid #000;
+        /* Thicker borders to outline 3x3 subgrids */
+        .sudoku-grid input:nth-child(3n+1) {
+            border-left: 2px solid black;
         }
-        .grid-line-bottom {
-            border-bottom: 2px solid #000;
+        .sudoku-grid input:nth-child(9n+1) {
+            border-left: none; /* Prevent double border */
         }
-        .grid-line-right {
-            border-right: 2px solid #000;
+        .sudoku-grid input:nth-child(-n+9) {
+            border-top: 2px solid black;
         }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .sudoku-grid input:nth-child(3n+1):nth-child(-n+9) {
+            border-top: 2px solid black;
         }
-        button:hover {
-            background-color: #0056b3;
+        .sudoku-grid input:nth-last-child(-n+9) {
+            border-bottom: 2px solid black;
         }
-        #result {
-            margin-top: 10px;
-            font-size: 16px;
-            color: red;
+        .sudoku-grid input:nth-child(n+19):nth-child(-n+27),
+        .sudoku-grid input:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid black;
+        }
+        .sudoku-grid input:nth-child(3n) {
+            border-right: 2px solid black;
         }
     </style>
 </head>
@@ -84,138 +79,121 @@
 <div class="game-container">
     <h2>Solve the Sudoku Puzzle</h2>
     <div id="sudoku-container" class="sudoku-grid">
-        
-        <!-- First row -->
-        <input type="text" maxlength="1" class="pre-filled grid-line" value="5">
-        <input type="text" maxlength="1" class="grid-line">
-        <input type="text" maxlength="1" class="grid-line-right"value="9">
-        <input type="text" maxlength="1" class="pre-filled" >
+        <!-- Sudoku Grid: 9x9, with pre-filled values as an example -->
+        <input type="text" maxlength="1" class="pre-filled" value="5">
         <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-right">
+        <input type="text" maxlength="1" class="pre-filled" value="9">
         <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="pre-filled">
-        <input type="text" maxlength="1" value="7">
-
-        <!-- Second row -->
-        <input type="text" maxlength="1" class="pre-filled grid-line-bottom grid-line">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line" value="8">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="7">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="8">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="5">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="9">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="7">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" value="5">
+        <input type="text" maxlength="1" class="pre-filled" value="3">
+        <input type="text" maxlength="1" value="9">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="8">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" value="2">
         <input type="text" maxlength="1">
         <input type="text" maxlength="1" value="1">
-        <input type="text" maxlength="1" class="grid-line-right">
-        <input type="text" maxlength="1" class="grid-line-bottom" value="5">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="3">
         <input type="text" maxlength="1" value="2">
-        <input type="text" maxlength="1" class="grid-line-bottom">
-
-        <!-- Third row -->
-        <input type="text" maxlength="1" class="pre-filled grid-line-bottom grid-line">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="3">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1" value="8">
-        <input type="text" maxlength="1" class="grid-line-right" value="4">
         <input type="text" maxlength="1">
         <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled" value="1">
-
-        <!-- Fourth row -->
-        <input type="text" maxlength="1" class="pre-filled grid-line">
-        <input type="text" maxlength="1" class="grid-line" value="9">
-        <input type="text" maxlength="1" class="grid-line-right">
+        <input type="text" maxlength="1" value="6">
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" value="9">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="8">
+        <input type="text" maxlength="1">
         <input type="text" maxlength="1" value="7">
         <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-right pre-filled">
+        <input type="text" maxlength="1" class="pre-filled" value="1">
         <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="6">
         <input type="text" maxlength="1">
-        <input type="text" maxlength="1" value="2">
-
-        <!-- Fifth row -->
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line" value="4">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
-        <input type="text" maxlength="1" class="grid-line-bottom">
-        <input type="text" maxlength="1" value="5">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
-        <input type="text" maxlength="1" class="grid-line-bottom" value="3">
-        <input type="text" maxlength="1" value="9">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
-
-        <!-- Sixth row -->
-        <input type="text" maxlength="1" class="grid-line grid-line-bottom" value="8">
-        <input type="text" maxlength="1" class="grid-line-bottom">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="2">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line" value="1">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
-        <input type="text" maxlength="1" class="grid-line-bottom" value="4">
-
-        <!-- Seventh row -->
-        <input type="text" maxlength="1" class="pre-filled">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-bottom" value="3">
-        <input type="text" maxlength="1" class="grid-line-bottom pre-filled">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="2">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-bottom">
-        <input type="text" maxlength="1" value="5">
-
-        <!-- Eighth row -->
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
-        <input type="text" maxlength="1" value="4">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
+        <input type="text" maxlength="1" value="3">
         <input type="text" maxlength="1">
         <input type="text" maxlength="1">
         <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-bottom" value="7">
-        <input type="text" maxlength="1" class="pre-filled">
         <input type="text" maxlength="1">
-
-        <!-- Ninth row -->
-        <input type="text" maxlength="1" class="pre-filled grid-line-right grid-line-bottom" value="1">
         <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="7">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="5">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
-        <input type="text" maxlength="1" value="8" class="pre-filled">
-        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
+        <input type="text" maxlength="1" class="pre-filled" value="5">
     </div>
-    <button onclick="checkSudoku()">Submit</button>
+    <button onclick="checkSudoku()">Check Solution</button>
     <div id="result"></div>
 </div>
 
 <script>
     function checkSudoku() {
-        let inputs = document.querySelectorAll('#sudoku-container input');
-        let solution = [
-            '5', '1', '9', '6', '2', '3', '8', '4', '7',
-            '6', '8', '4', '9', '1', '7', '5', '2', '3',
-            '7', '2', '3', '5', '8', '4', '9', '6', '1',
-            '3', '9', '6', '7', '4', '8', '1', '5', '2',
-            '4', '7', '1', '2', '5', '6', '3', '9', '8',
-            '8', '5', '2', '1', '3', '9', '6', '7', '4',
-            '9', '6', '8', '3', '7', '2', '4', '1', '5',
-            '2', '4', '5', '8', '6', '1', '7', '3', '9',
-            '1', '3', '7', '4', '9', '5', '2', '8', '6'
+        const solution = [
+            [5, 6, 9, 8, 7, 1, 4, 3, 2],
+            [1, 8, 7, 6, 5, 4, 9, 2, 3],
+            [4, 2, 3, 9, 8, 3, 7, 5, 1],
+            [7, 9, 1, 3, 4, 2, 5, 6, 8],
+            [3, 4, 6, 7, 5, 9, 2, 8, 1],
+            [8, 1, 2, 4, 6, 7, 3, 9, 4],
+            [9, 3, 8, 5, 2, 6, 1, 4, 7],
+            [6, 5, 4, 2, 3, 8, 1, 7, 9],
+            [2, 7, 5, 1, 9, 6, 8, 4, 5]
         ];
 
-        let correct = true;
-        for (let i = 0; i < inputs.length; i++) {
-            if (inputs[i].value !== solution[i]) {
-                correct = false;
-                break;
-            }
-        }
+        let isCorrect = true;
+        const cells = document.querySelectorAll('.sudoku-grid input');
 
-        if (correct) {
-          window.location.href = "door-1.html";
-        } else {
-            document.getElementById('result').textContent = "There's a mistake in your solution. Try again!";
-        }
+        cells.forEach((cell, index) => {
+            const row = Math.floor(index / 9);
+            const col = index % 9;
+
+            if (cell.value != solution[row][col]) {
+                isCorrect = false;
+            }
+        });
+
+        const result = document.getElementById('result');
+        result.textContent = isCorrect ? 'Congratulations! The solution is correct.' : 'Some numbers are incorrect. Please try again.';
     }
 </script>
 
