@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static-prod.adweek.com/wp-content/uploads/2020/10/virtual-escape-room-PAGE-2020.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .game-container {
+            position: relative;
+            width: 360px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+        .sudoku-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 30px);
+            grid-template-rows: repeat(9, 30px);
+            gap: 2px;
+            margin: 0 auto;
+        }
+        .sudoku-grid input {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        .pre-filled {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+        .grid-line {
+            border-bottom: 2px solid #000;
+            border-right: 2px solid #000;
+        }
+        .grid-line-bottom {
+            border-bottom: 2px solid #000;
+        }
+        .grid-line-right {
+            border-right: 2px solid #000;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 10px;
+            font-size: 16px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h2>Solve the Sudoku Puzzle</h2>
+    <div id="sudoku-container" class="sudoku-grid">
+        
+        <!-- First row -->
+        <input type="text" maxlength="1" class="pre-filled grid-line" value="5">
+        <input type="text" maxlength="1" class="grid-line">
+        <input type="text" maxlength="1" class="grid-line-right"value="9">
+        <input type="text" maxlength="1" class="pre-filled" >
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-right">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled">
+        <input type="text" maxlength="1" value="7">
+
+        <!-- Second row -->
+        <input type="text" maxlength="1" class="pre-filled grid-line-bottom grid-line">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line" value="8">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" value="1">
+        <input type="text" maxlength="1" class="grid-line-right">
+        <input type="text" maxlength="1" class="grid-line-bottom" value="5">
+        <input type="text" maxlength="1" value="2">
+        <input type="text" maxlength="1" class="grid-line-bottom">
+
+        <!-- Third row -->
+        <input type="text" maxlength="1" class="pre-filled grid-line-bottom grid-line">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="3">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" value="8">
+        <input type="text" maxlength="1" class="grid-line-right" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled" value="1">
+
+        <!-- Fourth row -->
+        <input type="text" maxlength="1" class="pre-filled grid-line">
+        <input type="text" maxlength="1" class="grid-line" value="9">
+        <input type="text" maxlength="1" class="grid-line-right">
+        <input type="text" maxlength="1" value="7">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-right pre-filled">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" value="2">
+
+        <!-- Fifth row -->
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line" value="4">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
+        <input type="text" maxlength="1" class="grid-line-bottom">
+        <input type="text" maxlength="1" value="5">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
+        <input type="text" maxlength="1" class="grid-line-bottom" value="3">
+        <input type="text" maxlength="1" value="9">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
+
+        <!-- Sixth row -->
+        <input type="text" maxlength="1" class="grid-line grid-line-bottom" value="8">
+        <input type="text" maxlength="1" class="grid-line-bottom">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="2">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line" value="1">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
+        <input type="text" maxlength="1" class="grid-line-bottom" value="4">
+
+        <!-- Seventh row -->
+        <input type="text" maxlength="1" class="pre-filled">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-bottom" value="3">
+        <input type="text" maxlength="1" class="grid-line-bottom pre-filled">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="2">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-bottom">
+        <input type="text" maxlength="1" value="5">
+
+        <!-- Eighth row -->
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
+        <input type="text" maxlength="1" value="4">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-bottom" value="7">
+        <input type="text" maxlength="1" class="pre-filled">
+        <input type="text" maxlength="1">
+
+        <!-- Ninth row -->
+        <input type="text" maxlength="1" class="pre-filled grid-line-right grid-line-bottom" value="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="7">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right" value="5">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line">
+        <input type="text" maxlength="1" value="8" class="pre-filled">
+        <input type="text" maxlength="1" class="grid-line-bottom grid-line-right pre-filled">
+    </div>
+    <button onclick="checkSudoku()">Submit</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function checkSudoku() {
+        let inputs = document.querySelectorAll('#sudoku-container input');
+        let solution = [
+            '5', '1', '9', '6', '2', '3', '8', '4', '7',
+            '6', '8', '4', '9', '1', '7', '5', '2', '3',
+            '7', '2', '3', '5', '8', '4', '9', '6', '1',
+            '3', '9', '6', '7', '4', '8', '1', '5', '2',
+            '4', '7', '1', '2', '5', '6', '3', '9', '8',
+            '8', '5', '2', '1', '3', '9', '6', '7', '4',
+            '9', '6', '8', '3', '7', '2', '4', '1', '5',
+            '2', '4', '5', '8', '6', '1', '7', '3', '9',
+            '1', '3', '7', '4', '9', '5', '2', '8', '6'
+        ];
+
+        let correct = true;
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value !== solution[i]) {
+                correct = false;
+                break;
+            }
+        }
+
+        if (correct) {
+          window.location.href = "door-1.html";
+        } else {
+            document.getElementById('result').textContent = "There's a mistake in your solution. Try again!";
+        }
+    }
+</script>
+
+</body>
+</html>
